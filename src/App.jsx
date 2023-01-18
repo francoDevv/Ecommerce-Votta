@@ -1,6 +1,7 @@
-import { useState } from 'react'
-import ItemListContainer from './components/ItemListContainer'
-import Navbar from './components/Navbar'
+// import { useState } from 'react'
+import React from 'react'
+import ItemListContainer from './components/ItemListContainer/ItemListContainer.jsx'
+import Navbar from './components/Navbar/Navbar.jsx'
 
 function App() {
   return (
