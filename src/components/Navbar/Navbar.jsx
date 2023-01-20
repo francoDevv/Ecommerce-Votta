@@ -31,9 +31,9 @@ function Navbar() {
                     <li className="nav-item">
                         <Link to="/category/women's%20clothing" className=' active hvr-grow hvr-underline-from-left menu-letter'>Mujeres</Link>
                     </li>
-                    <li className="nav-item">
+                    {/* <li className="nav-item">
                         <a className="nav-link active hvr-grow hvr-underline-from-left menu-letter" aria-current="page" href="./pages/contacto.html">Contacto</a>
-                    </li>
+                    </li> */}
                 </ul>
                 <div className='d-flex'>
                     <CartWidget/>

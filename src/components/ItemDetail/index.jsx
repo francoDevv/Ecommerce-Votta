@@ -16,22 +16,18 @@ const ItemDetail = () => {
     }, [itemId])
 
   return (
-    <>
     <div>
         <div>
             <h2>{item.title}</h2>
         </div>
-        <div>
+        <div className='d-flex'>
+            <img src={item.image} className="imageCard" alt="image of product" />
             <div>
-                <img src="" alt="" />
-            </div>
-            <div>
-                <p></p>
-                <h5></h5>
+                <h4>{item.description}</h4>
+                <h5>{item.price}</h5>
             </div>
         </div>
     </div>
-    </>
   )
 }
 

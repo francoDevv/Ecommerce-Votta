@@ -8,7 +8,7 @@ import "./ItemListContainer.css"
 
 const urlProducts = "https://fakestoreapi.com/products"
 
-const ItemListContainer = ({greeting}) => {
+const ItemListContainer = () => {
 
     const [product, setProduct] = useState([])
 
@@ -30,9 +30,6 @@ const ItemListContainer = ({greeting}) => {
 
     return(
         <div className="container">
-            <div className="title">
-                {greeting}
-            </div>
             <div className="d-flex flex-wrap principal">
                 {product.map((product) => {
                     return(
