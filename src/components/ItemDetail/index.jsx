@@ -15,6 +15,10 @@ const ItemDetail = () => {
        axios.get(urlItem).then((res) => setItem(res.data));
     }, [itemId])
 
+    // const CartContext = React.createContext(0);
+
+    const [count, setCount] = useState(0)
+
   return (
     <div>
         <div>
@@ -25,6 +29,8 @@ const ItemDetail = () => {
             <div>
                 <h4>{item.description}</h4>
                 <h5>{item.price}</h5>
+                <button type="button" className="btn btn-danger" onClick={() => setCount(count + 1)}>Agregar al carrito</button>
+                <p>Clickeaste {count} veces el boton</p>
             </div>
         </div>
     </div>

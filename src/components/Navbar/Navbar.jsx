@@ -36,10 +36,12 @@ function Navbar() {
                     </li> */}
                 </ul>
                 <div className='d-flex'>
-                    <CartWidget/>
-                    <form className="d-flex searchDesktop">
+                    <Link to="/cart" className='active hvr-grow hvr-underline-from-left menu-letter'>
+                        <CartWidget/>
+                    </Link>
+                    {/* <form className="d-flex searchDesktop">
                         <input className="form-control me-2" id= "buscador" type="search" placeholder="Buscar" aria-label="Search"/>
-                    </form>
+                    </form> */}
                 </div>
             </div>
         </div>
