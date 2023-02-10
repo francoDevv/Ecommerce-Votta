@@ -17,8 +17,8 @@ const ItemDetail = () => {
 
     // const [count, setCount] = useState(0)
 
-    const nombre = useContext(CartContext);
-    console.log('nombre:', nombre);
+    // const nombre = useContext(CartContext);
+    // console.log('nombre:', nombre);
 
   return (
     <div>
