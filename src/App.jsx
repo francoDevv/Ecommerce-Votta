@@ -6,6 +6,7 @@ import ItemDetail from './components/ItemDetail/index.jsx'
 import ItemList from './components/ItemList/index.jsx'
 import ItemListContainer from './components/ItemListContainer/ItemListContainer.jsx'
 import Navbar from './components/Navbar/Navbar.jsx'
+import Purchase from './components/Purchase/Purchase.jsx'
 import CartProvider from './context/CartContext.jsx'
 
 function App() {
@@ -32,6 +33,9 @@ function App() {
             <h1>Error 404</h1>
             <h2>Page not found</h2>
           </div>}>
+          </Route>
+
+          <Route path='/purchase/:id' element={<Purchase/>}>
           </Route>
 
         </Routes>

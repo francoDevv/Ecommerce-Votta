@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useCartContext } from '../../context/CartContext'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate  } from 'react-router-dom';
 import ItemCart from '../ItemCart/ItemCart';
 import { addDoc, collection, getFirestore } from 'firebase/firestore';
 
@@ -13,15 +13,20 @@ const Checkout = () => {
   const [inputLastName, setinputLastName] = useState('')
   const [inputEmail, setinputEmail] = useState('')
   const [inputConfirmEmail, setinputConfirmEmail] = useState('')
+  const [inputPhone, setinputPhone] = useState('')
 
   const [loading, setLoading] = useState(false)
+
+  const navigate = useNavigate();
 
   const order = {
     buyer: {
       name: inputName,
       lastName: inputLastName,
+      phone: parseInt(inputPhone),
       email: inputEmail,
       emailConfirm: inputConfirmEmail,
+      date: new Date()
     },
     items: cart.map(item => ({id : item.id, title : item.title, price : item.price, quantity: item.quantity})),
     total: precioTotal()
@@ -33,11 +38,12 @@ const Checkout = () => {
       setLoading(true)
       const db = getFirestore();
       const ordersCollection = collection(db, 'orders');
-      addDoc(ordersCollection, order)
+      return addDoc(ordersCollection, order)
       .then((data) => {
         console.log(data.id)
         limpiarCarrito();
         setLoading(false);
+        return navigate(`/purchase/${data.id}`)
       });
     } else {
       alert('Los emails no coinciden')
@@ -81,6 +87,10 @@ const Checkout = () => {
               <div className="col-md-6">
                   <label className="form-label">Apellido</label>
                   <input type="text" className= "form-control" value={inputLastName} onChange={(e) => setinputLastName(e.target.value)} required/>
+              </div>
+              <div className="col-md-6">
+                  <label className="form-label">Telefono</label>
+                  <input type="text" className= "form-control" value={inputPhone} onChange={(e) => setinputPhone(e.target.value)} required/>
               </div>
               <div className="col-md-6">
                   <label className="form-label">Email</label>
