@@ -31,17 +31,11 @@ function Navbar() {
                     <li className="nav-item">
                         <Link to="/category/women's%20clothing" className=' active hvr-grow hvr-underline-from-left menu-letter'>Mujeres</Link>
                     </li>
-                    {/* <li className="nav-item">
-                        <a className="nav-link active hvr-grow hvr-underline-from-left menu-letter" aria-current="page" href="./pages/contacto.html">Contacto</a>
-                    </li> */}
                 </ul>
                 <div className='d-flex'>
                     <Link to="/cart" className='active hvr-grow hvr-underline-from-left menu-letter'>
                         <CartWidget/>
                     </Link>
-                    {/* <form className="d-flex searchDesktop">
-                        <input className="form-control me-2" id= "buscador" type="search" placeholder="Buscar" aria-label="Search"/>
-                    </form> */}
                 </div>
             </div>
         </div>

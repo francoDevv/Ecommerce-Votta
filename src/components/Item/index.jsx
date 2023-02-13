@@ -14,7 +14,7 @@ const Card = ({item}) => {
             <h5 className="card-title tituloFoto">{item.title}</h5>
             <p className="card-text">${item.price}</p>
             <NavLink to={`/item/${itemId}`}>
-              <button className="btn btn-primary">Ver Detalle</button>
+              <button className="btn btn-danger">Ver Detalle</button>
             </NavLink>
           </div>
         </div>

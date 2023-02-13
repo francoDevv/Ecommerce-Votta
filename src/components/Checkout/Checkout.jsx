@@ -1,9 +1,110 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useCartContext } from '../../context/CartContext'
+import { Link } from 'react-router-dom';
+import ItemCart from '../ItemCart/ItemCart';
+import { addDoc, collection, getFirestore } from 'firebase/firestore';
 
 const Checkout = () => {
+
+  const {cart, precioTotal} = useCartContext();
+  const {limpiarCarrito} = useCartContext();
+
+  const [inputName, setinputName] = useState('')
+  const [inputLastName, setinputLastName] = useState('')
+  const [inputEmail, setinputEmail] = useState('')
+  const [inputConfirmEmail, setinputConfirmEmail] = useState('')
+
+  const [loading, setLoading] = useState(false)
+
+  const order = {
+    buyer: {
+      name: inputName,
+      lastName: inputLastName,
+      email: inputEmail,
+      emailConfirm: inputConfirmEmail,
+    },
+    items: cart.map(item => ({id : item.id, title : item.title, price : item.price, quantity: item.quantity})),
+    total: precioTotal()
+    }
+  
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (inputEmail === inputConfirmEmail) {
+      setLoading(true)
+      const db = getFirestore();
+      const ordersCollection = collection(db, 'orders');
+      addDoc(ordersCollection, order)
+      .then((data) => {
+        console.log(data.id)
+        limpiarCarrito();
+        setLoading(false);
+      });
+    } else {
+      alert('Los emails no coinciden')
+    }
+  }
+
+  if (loading) {
+    return <div className="d-flex justify-content-center">
+                <div className="spinner-border text-danger" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
+            </div>
+}
+
+  if (cart.length === 0) {
+    return (
+      <div>
+        <h1>Carrito vacio</h1>
+        <Link to='/'>Comprar</Link>
+      </div>
+    )
+  }
+  
+ 
   return (
-    <div>Checkout</div>
+    <>
+      {
+        cart.map (item => <ItemCart key={item.id} item={item} />)
+      }
+      <div className='d-flex'>
+        <h2>Total: ${precioTotal()}</h2>
+        <div>
+          <button className='btn btn-danger' onClick={() => limpiarCarrito()}>Limpiar Carrito</button>
+        </div>
+        <div>
+          <form className="row g-3">
+              <div className="col-md-6">
+                  <label className="form-label">Nombre</label>
+                  <input type="text" className= "form-control" value={inputName} onChange={(e) => setinputName(e.target.value)} required/>
+              </div>
+              <div className="col-md-6">
+                  <label className="form-label">Apellido</label>
+                  <input type="text" className= "form-control" value={inputLastName} onChange={(e) => setinputLastName(e.target.value)} required/>
+              </div>
+              <div className="col-md-6">
+                  <label className="form-label">Email</label>
+                  <input type="email" className="form-control" value={inputEmail} onChange={(e) => setinputEmail(e.target.value)} required/>
+              </div>
+              <div className="col-md-6">
+                  <label className="form-label">Confirm Email</label>
+                  <input type="email" className="form-control" value={inputConfirmEmail} onChange={(e) => setinputConfirmEmail(e.target.value)} required/>
+              </div>
+              <div className="col-12">
+                <button className='btn btn-danger' onClick={handleClick}>Realizar Compra</button>
+              </div>
+          </form>
+        </div>
+      </div>
+    </>
   )
 }
 
 export default Checkout
+
+/*
+  name: inputName.value,
+      lastName: inputLastName.value,
+      email: inputEmail.value,
+      confirmEmail: inputConfirmEmail.value,
+*/

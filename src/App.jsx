@@ -26,6 +26,14 @@ function App() {
           <Route path='/cart' element={<Checkout/>} >
           </Route>
 
+          <Route path='*' 
+          element=
+          {<div>
+            <h1>Error 404</h1>
+            <h2>Page not found</h2>
+          </div>}>
+          </Route>
+
         </Routes>
       </CartProvider>
     </div>

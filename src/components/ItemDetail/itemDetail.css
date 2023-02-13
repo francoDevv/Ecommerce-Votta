@@ -1,4 +1,32 @@
 .imageCard{
     width: 378px;
     height: 468px;
+    margin: 50px;
+}
+
+.divTitle{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.description{
+    max-width: 70%;
+    margin-top: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+}
+
+.price{
+    margin-top: 100px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bold;
 }
