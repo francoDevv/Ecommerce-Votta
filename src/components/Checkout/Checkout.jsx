@@ -3,6 +3,7 @@ import { useCartContext } from '../../context/CartContext'
 import { Link, useNavigate  } from 'react-router-dom';
 import ItemCart from '../ItemCart/ItemCart';
 import { addDoc, collection, getFirestore } from 'firebase/firestore';
+import './Checkout.css'
 
 const Checkout = () => {
 
@@ -73,12 +74,15 @@ const Checkout = () => {
       {
         cart.map (item => <ItemCart key={item.id} item={item} />)
       }
-      <div className='d-flex'>
-        <h2>Total: ${precioTotal()}</h2>
+      <div className='d-flex contenedor'>
         <div>
           <button className='btn btn-danger' onClick={() => limpiarCarrito()}>Limpiar Carrito</button>
         </div>
-        <div>
+        <div className='totalCompra'>
+          <h2>Total: ${precioTotal()}</h2>
+        </div>
+      </div>
+      <div className='container'>
           <form className="row g-3">
               <div className="col-md-6">
                   <label className="form-label">Nombre</label>
@@ -86,7 +90,7 @@ const Checkout = () => {
               </div>
               <div className="col-md-6">
                   <label className="form-label">Apellido</label>
-                  <input type="text" className= "form-control" value={inputLastName} onChange={(e) => setinputLastName(e.target.value)} required/>
+                  <input type="text" className= "form-control " value={inputLastName} onChange={(e) => setinputLastName(e.target.value)} required/>
               </div>
               <div className="col-md-6">
                   <label className="form-label">Telefono</label>
@@ -105,7 +109,6 @@ const Checkout = () => {
               </div>
           </form>
         </div>
-      </div>
     </>
   )
 }
